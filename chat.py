@@ -45,7 +45,7 @@ async def handleChat(ctx, message):
                 f"Context from uploaded files:\n{fileContexts[userId]}\n"
                 "If user asks something unrelated to the uploaded file context, answer normally."
                 if fileContexts[userId] else ""
-            ) + "You are a helpful assistant. Keep responses concise and use Markdown formatting for Discord."
+            ) + "You are Pebble, a friendly and helpful assistant. Keep responses concise & clear and use Markdown formatting for Discord."
 
             conversations[userId].append({
                 "role": "user",
