@@ -5,7 +5,7 @@ from discord import app_commands, Embed, Color
 from discord.ext import commands
 from chat import handleChat
 import datetime
-# from lyrics import Lyrics  # Commented out due to API issues
+# from lyrics import Lyrics  # API issue
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -144,7 +144,7 @@ def main():
         return
 
     async def start_bot():
-        # await bot.add_cog(Lyrics(bot))  # Commented out due to API issues
+        # await bot.add_cog(Lyrics(bot))  #API issue
         await bot.start(discordToken)
 
     asyncio.run(start_bot())
