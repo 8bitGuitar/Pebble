@@ -6,7 +6,6 @@ from lyricsgenius import Genius
 import os
 import re
 
-# Initialize Genius API
 GENIUS_TOKEN = os.getenv("GENIUS_API_TOKEN")
 genius = Genius(GENIUS_TOKEN)
 
@@ -15,11 +14,11 @@ class Lyrics(commands.Cog):
         self.bot = bot
 
     def clean_lyrics(self, lyrics):
-        # Remove the "Lyrics" header if present
+        # remove header if present
         if lyrics.startswith('Lyrics'):
             lyrics = lyrics[lyrics.find('\n')+1:]
 
-        # Remove contributor line and similar metadata
+        # metadata removal
         lines = lyrics.split('\n')
         cleaned_lines = []
         skip_patterns = [
@@ -70,7 +69,7 @@ class Lyrics(commands.Cog):
         except Exception as e:
             error_message = str(e)
             
-            # Check for specific 403 Forbidden error from Genius
+            
             if "[Errno 403]" in error_message and "genius.com" in error_message:
                 error_embed = discord.Embed(
                     title="Error",
