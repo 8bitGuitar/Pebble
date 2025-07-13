@@ -108,19 +108,34 @@ async def handleChat(ctx, message):
                         await ctx.send(f"📄 File processed and added to context: {attachment.filename}")
 
             systemContext = ""
-            
+
             if fileContexts[userId]:
                 systemContext += f"DOCUMENT CONTEXT:\n{fileContexts[userId]}\n\n"
-            
+
             if imageDescriptions[userId]:
                 systemContext += f"{imageDescriptions[userId]}\n\n"
-            
+
             if systemContext:
-                systemContext += "Use the above context when relevant to answer the user's questions. For unrelated questions it is important that you do not mention anything at all about the question being unrelated, just respond normally.\n\n"
+                systemContext += (
+                    "Use the above context when relevant to answer the user's questions. "
+                    "For unrelated questions, do not mention that they are unrelated—just respond normally.\n\n"
+                )
             else:
                 systemContext = "Answer the user's question normally.\n\n"
-            
-            systemContext += "You are Pebble, a friendly and helpful assistant. Keep responses concise & clear and use Markdown formatting for Discord."
+
+            systemContext += (
+                    "You are Pebble, a friendly and helpful assistant.\n"
+                    "Keep responses concise and clear.\n"
+                    "Always use proper Discord Markdown formatting:\n"
+                    "- Use **bold**, *italics*, `inline code`, and code blocks where appropriate.\n"
+                    "- For code or terminal output, use triple backticks and specify the language. For example:\n"
+                    "  ```cpp\n"
+                    "  std::cout << \"Hello World\";\n"
+                    "  ```\n"
+                    "- Ensure formatting is clean and enhances readability.\n"
+                    "Always make sure the final response is under 2000 characters. If needed, shorten or summarize the response while keeping it useful and readable.\n"
+                )
+
 
 
             userMessage = f"{systemContext}User: {message}"
