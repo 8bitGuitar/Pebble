@@ -52,7 +52,7 @@ async def reset(ctx):
         fileContexts[userId] = ""
         imageContexts[userId] = {}
         imageDescriptions[userId] = ""
-        await ctx.send("Your conversation history, file context, image context, and image descriptions have been reset.")
+        await ctx.send("Your conversation history and file/image contexts have been reset.")
     else:
         await ctx.send("No conversation history found.")
 
