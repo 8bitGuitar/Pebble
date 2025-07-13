@@ -45,23 +45,26 @@ async def chat(ctx, *, message):
 
 @bot.command(name='reset')
 async def reset(ctx):
-    from chat import conversations, fileContexts
+    from chat import conversations, fileContexts, imageContexts, imageDescriptions
     userId = ctx.author.id
     if userId in conversations:
         conversations[userId] = []
         fileContexts[userId] = ""
-        await ctx.send("Your conversation history and file context have been reset.")
+        imageContexts[userId] = {}
+        imageDescriptions[userId] = ""
+        await ctx.send("Your conversation history, file context, image context, and image descriptions have been reset.")
     else:
         await ctx.send("No conversation history found.")
 
 @bot.command(name='history')
 async def history(ctx):
-    from chat import conversations, fileContexts
+    from chat import conversations, fileContexts, imageContexts, imageDescriptions
     userId = ctx.author.id
     if userId in conversations:
         historyLength = len(conversations[userId])
         hasFile = "with" if fileContexts[userId] else "without"
-        await ctx.send(f"Your conversation has {historyLength} messages, {hasFile} file context.")
+        hasImage = "with" if imageDescriptions[userId] else "without"
+        await ctx.send(f"Your conversation has {historyLength} messages, {hasFile} file context, {hasImage} image analysis.")
     else:
         await ctx.send("No conversation history found.")
 
