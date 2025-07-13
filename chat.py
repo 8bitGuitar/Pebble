@@ -50,7 +50,7 @@ async def analyzeImageWithVisionModel(imageData, userMessage=""):
             model="meta-llama/llama-4-maverick-17b-128e-instruct",
             messages=visionMessages,
             temperature=0.3,
-            max_completion_tokens=499,
+            max_completion_tokens=450,
         )
 
         description = completion.choices[0].message.content.strip()
@@ -135,10 +135,10 @@ async def handleChat(ctx, message):
 
             # use text model for conversations
             completion = groqClient.chat.completions.create(
-                model="llama3-70b-8192",
+                model="llama-3.3-70b-versatile",
                 messages=conversations[userId],
                 temperature=0.5,
-                max_completion_tokens=499,
+                max_completion_tokens=450,
             )
 
             response = completion.choices[0].message.content
