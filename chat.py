@@ -50,7 +50,7 @@ async def analyzeImageWithVisionModel(imageData, userMessage=""):
             model="meta-llama/llama-4-maverick-17b-128e-instruct",
             messages=visionMessages,
             temperature=0.3,
-            max_completion_tokens=1024,
+            max_completion_tokens=499,
         )
 
         description = completion.choices[0].message.content.strip()
@@ -138,7 +138,7 @@ async def handleChat(ctx, message):
                 model="llama3-70b-8192",
                 messages=conversations[userId],
                 temperature=0.5,
-                max_completion_tokens=1024,
+                max_completion_tokens=499,
             )
 
             response = completion.choices[0].message.content
